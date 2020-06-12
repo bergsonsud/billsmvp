@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "970522912966",
+    "firebase_url": "https://billsmvp.firebaseio.com",
+    "project_id": "billsmvp",
+    "storage_bucket": "billsmvp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970522912966:android:80e0605795934fafd38fc7",
+        "android_client_info": {
+          "package_name": "com.example.billsmvp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970522912966-rmsu0cohshc3i9rk4dbthog3jgjo7j6p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.billsmvp",
+            "certificate_hash": "376b773817d1204cdb68a0c572409e3f969d3080"
+          }
+        },
+        {
+          "client_id": "970522912966-kki2ofbm3ca1dajj68810jaukfvu2oh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEHmv9vvbHpzZYNWhst7vE94kgJFHwyLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970522912966-kki2ofbm3ca1dajj68810jaukfvu2oh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
