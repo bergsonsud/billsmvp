@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:padding="8dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputLayoutDescricao"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descricao">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/EditTextDescricaoDespesa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputLayoutValor"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutDescricao"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Valor">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/EditTextValorDespesa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/dialog_bt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textColor="#FF000000"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutValor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Data"/>
+
+    <EditText
+        android:id="@+id/EditTextDataDespesa"
+        android:text="yyyy-mm-dd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutValor"
+        app:layout_constraintLeft_toRightOf="@id/dialog_bt_date"
+        android:focusable="false"/>
+
+    <Switch
+        android:id="@+id/SwitchPago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pago"
+        app:layout_constraintTop_toBottomOf="@id/dialog_bt_date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddDespesa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:tint="@color/white"
+        android:layout_margin="16dp"
+        android:src="@drawable/check"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

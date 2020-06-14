@@ -3,9 +3,9 @@ package com.example.billsmvp.scenes.login
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.billsmvp.scenes.main.MainActivity
 import com.example.billsmvp.R
 import com.example.billsmvp.scenes.login.interfaces.LoginActivityInterface
+import com.example.billsmvp.scenes.main.MainActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 

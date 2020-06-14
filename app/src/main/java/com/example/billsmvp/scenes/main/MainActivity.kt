@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import com.example.billsmvp.R
 import com.example.billsmvp.base.BaseActivity
 import com.example.billsmvp.scenes.account.AccountFragment
+import com.example.billsmvp.scenes.despesas.list.ListDepesaFragment
 import com.example.billsmvp.scenes.main.interfaces.MainActivityContract
+import com.example.billsmvp.scenes.receitas.list.ListReceitaFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), MainActivityContract.View {
@@ -16,6 +18,7 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
 
         setupNavigation()
         openFragment(MainFragment())
+
     }
 
 
@@ -36,6 +39,14 @@ class MainActivity : BaseActivity(), MainActivityContract.View {
            when(it.itemId) {
                R.id.nav_home ->{
                    openHome()
+                   true
+               }
+               R.id.nav_despesa -> {
+                   openFragment(ListDepesaFragment())
+                   true
+               }
+               R.id.nav_receita -> {
+                   openFragment(ListReceitaFragment())
                    true
                }
                else->{

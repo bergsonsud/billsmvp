@@ -1,10 +1,10 @@
 package com.example.billsmvp.scenes.login
 
-import com.example.billsmvp.builders.FirebaseBuilder
+import com.example.billsmvp.objects.ObjectFirebaseInstance
 import com.example.billsmvp.scenes.login.interfaces.LoginActivityInterface
 
 class LoginPresenter : LoginActivityInterface.Presenter {
-    val auth = FirebaseBuilder.auth
+    val auth = ObjectFirebaseInstance.auth
     lateinit var view : LoginActivityInterface.View
 
     override fun init() {

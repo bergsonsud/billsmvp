@@ -8,14 +8,14 @@
         />
 
     <item
-        android:id="@+id/nav_new_cash_receipt"
-        android:title="Nova receita"
+        android:id="@+id/nav_receita"
+        android:title="Receitas"
         android:icon="@drawable/trending_up"
         />
 
     <item
-        android:id="@+id/nav_new_bill"
-        android:title="Nova despesa"
+        android:id="@+id/nav_despesa"
+        android:title="Despesas"
         android:icon="@drawable/trending_down"
         />
 
