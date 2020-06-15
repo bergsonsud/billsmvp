@@ -9,24 +9,17 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/descricaoReceita"
-        android:text="Celular"
+        android:id="@+id/data"
+        android:text="18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
         />
 
-    <TextView
-        android:id="@+id/valorReceita"
-        android:text="R$ 200,00"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/descricao"
-        android:textColor="@color/receita"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

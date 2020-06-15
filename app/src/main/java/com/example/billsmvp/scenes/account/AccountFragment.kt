@@ -45,27 +45,9 @@ class AccountFragment : Fragment(), AccountActivityContract.View {
         super.onStart()
         setupSignInClient()
         logout()
-        //loadImage()
-        chooseFile()
-    }
-
-    private fun loadImage() {
-
-        val storageRef = FirebaseStorage.getInstance().reference
-        val image = storageRef.child("IMG_20200106_010334.jpg")
-        image.downloadUrl.addOnSuccessListener{
-            imageView.loadImage(it.toString())
-        }
 
     }
 
-
-    private fun chooseFile() {
-        chooseFile.setOnClickListener {
-            requestCameraPermission()
-        }
-
-    }
 
 
     override fun logout() {
@@ -119,14 +101,14 @@ class AccountFragment : Fragment(), AccountActivityContract.View {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK) {
-            imageView.setImageURI(image_uri)
+            imagemAccount.setImageURI(image_uri)
 
         }
     }
 
     private fun didSelectImage(image: Bitmap) {
         selectedImage = image
-        imageView.setImageBitmap(image)
+        imagemAccount.setImageBitmap(image)
     }
 
     private fun checkSelectedImage() {

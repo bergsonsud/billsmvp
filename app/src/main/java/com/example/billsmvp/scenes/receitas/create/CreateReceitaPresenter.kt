@@ -1,15 +1,27 @@
 package com.example.billsmvp.scenes.receitas.create
 
+import android.net.Uri
 import com.example.billsmvp.objects.ObjectFirebaseInstance
 import com.example.billsmvp.models.Receita
 import com.google.firebase.Timestamp
 
 class CreateReceitaPresenter : CreateReceitaContract.Presenter {
     lateinit var view : CreateReceitaContract.View
-    override fun create(valor: Float, descricao: String, data: Timestamp, recebido: Boolean) {
+
+
+    fun uploadAnexo(uriAnexo: Uri, userId: String, id: String) {
+        view.upload(uriAnexo,userId,id)
+    }
+
+    override fun create(valor: Float, descricao: String, data: Timestamp, recebido: Boolean, uriAnexo: Uri?, filePath : String?) {
         val id = ObjectFirebaseInstance.db.collection("receitas").document().id
-        val user_id = ObjectFirebaseInstance.getUId().toString()
-        val receita = Receita(id,user_id,valor,descricao,data,recebido)
+        val userId = ObjectFirebaseInstance.getUId().toString()
+
+        uriAnexo?.let {
+            uploadAnexo(it,userId,id)
+        }
+
+        val receita = Receita(id,userId,valor,descricao,data,recebido, filePath.toString())
         ObjectFirebaseInstance.create("receitas",id,receita) {
             if (it){
                 view.showMessage("Receita criada")
@@ -22,13 +34,19 @@ class CreateReceitaPresenter : CreateReceitaContract.Presenter {
 
     override fun update(
         id: String,
-        user_id: String,
+        userId: String,
         valor: Float,
         descricao: String,
         data: Timestamp,
-        recebido: Boolean
-    ) {
-        val receita = Receita(id,user_id,valor,descricao,data,recebido)
+        recebido: Boolean,
+        uriAnexo: Uri?,
+        filePath: String?)
+        {
+        val userId = ObjectFirebaseInstance.getUId().toString()
+        uriAnexo?.let {
+            uploadAnexo(it,userId,id)
+        }
+        val receita = Receita(id,userId,valor,descricao,data,recebido,filePath.toString())
         ObjectFirebaseInstance.update("receitas",receita,id){
             if (it){
                 view.showMessage("Receita atualizada")

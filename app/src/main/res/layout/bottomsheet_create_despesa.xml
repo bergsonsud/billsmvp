@@ -17,18 +17,16 @@
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
-        android:theme="@style/Theme.MaterialComponents.Light"
         android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:theme="@style/Theme.MaterialComponents.Light"
         app:behavior_peekHeight="600dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        app:cardBackgroundColor="#eee"
         app:cardCornerRadius="0dp"
-        app:cardElevation="5dp">
+        app:cardElevation="5dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
-
-        <include layout="@layout/bottomsheet_create_despesa_content"/>
+        <include layout="@layout/bottomsheet_create_despesa_content" />
     </com.google.android.material.card.MaterialCardView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

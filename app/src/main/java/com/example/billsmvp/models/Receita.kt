@@ -4,10 +4,10 @@ import com.google.firebase.Timestamp
 import java.io.Serializable
 import java.util.*
 
-class Receita(id: String,user_id: String ,valor : Float, descricao : String,data : Timestamp,
-              var recebido : Boolean): Transacao(id, user_id,valor, descricao, data), Serializable {
+class Receita(id: String, userId: String, valor : Float, descricao : String, data : Timestamp,
+              var recebido : Boolean, var filePath : String): Transacao(id, userId,valor, descricao, data,TYPE.TRANSACAO), Serializable {
 
-    constructor() : this("","",0F, "", Timestamp(Date()),false) {
+    constructor() : this("","",0F, "", Timestamp(Date()),false, "") {
 
     }
 }

@@ -8,16 +8,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.billsmvp.R
+import com.example.billsmvp.base.TransacaoInterface
 import com.example.billsmvp.models.Despesa
-import com.example.billsmvp.scenes.CustomDialog
-import com.example.billsmvp.scenes.CustomDialogInterface
+import com.example.billsmvp.models.Transacao
+import com.example.billsmvp.base.CustomDialog
+import com.example.billsmvp.base.CustomDialogInterface
 import com.example.billsmvp.scenes.despesas.create.BottomsheetCreateDespesa
 import kotlinx.android.synthetic.main.fragment_list_despesas.*
 
-class ListDepesaFragment : Fragment(), ListDespesaContract.View, CustomDialogInterface {
+class ListDepesaFragment : Fragment(), ListDespesaContract.View,
+    CustomDialogInterface,
+    TransacaoInterface {
     val presenter = ListDespesaPresenter()
     lateinit var adapter: ListDespesaAdapter
-    lateinit var bottomsheet: BottomsheetCreateDespesa
+    lateinit var adapterDay: ListDespesaDayAdapter
+    lateinit var bottomsheetCreate: BottomsheetCreateDespesa
+    lateinit var bottomsheetShow: BottomsheetShowDespesa
     lateinit var customDialog: CustomDialog
     var despesas : List<Despesa> = arrayListOf()
 
@@ -36,26 +42,47 @@ class ListDepesaFragment : Fragment(), ListDespesaContract.View, CustomDialogInt
         customDialog.view = this
         setupBottomsheet()
         setupFloatingButton()
-        setupAdapter()
+        setupAdapterDay()
         presenter.getAll {success, list ->
             if (success) {
                 despesas = list
                 customDialog.transacoes = list
-                fillAdapter()
+                presenter.despesas = list
+                presenter.group()
+                presenter.foreachMapLista()
+                fillAdapterDay()
+                fillTotalDespesas()
             }
         }
 
+
     }
+
+    fun fillTotalDespesas() {
+        presenter?.setTotalDespesas()?.let {
+            valorTotalDespesas?.text = it
+        }
+    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        customDialog = CustomDialog(context,despesas, "despesas")
+        customDialog =
+            CustomDialog(context, despesas, "despesas")
     }
 
-    override fun setupAdapter() {
-        adapter = ListDespesaAdapter(this,context, arrayListOf())
+
+    override fun setupAdapterDay() {
+        adapterDay = ListDespesaDayAdapter(this, requireContext(), arrayListOf())
         list_despesas_recyclerview.layoutManager = LinearLayoutManager(context)
-        list_despesas_recyclerview.adapter = adapter
+        list_despesas_recyclerview.adapter = adapterDay
+    }
+
+
+
+    fun fillAdapterDay() {
+        adapterDay.lista = presenter.lista
+        adapterDay.notifyDataSetChanged()
     }
 
 
@@ -69,21 +96,30 @@ class ListDepesaFragment : Fragment(), ListDespesaContract.View, CustomDialogInt
 
     fun setupFloatingButton(){
         addDespesa.setOnClickListener {
-            bottomsheet = BottomsheetCreateDespesa(null)
-            bottomsheet.show(childFragmentManager,"BottomsheetCreateDespesa")
+            bottomsheetCreate = BottomsheetCreateDespesa(null)
+            bottomsheetCreate.show(childFragmentManager,"BottomsheetCreateDespesa")
         }
     }
 
-    override fun showEdit(position: Int) {
-        bottomsheet = BottomsheetCreateDespesa(despesas[position])
-        bottomsheet.show(childFragmentManager,"BottomsheetCreateDespesa")
+    override fun showEdit(position: Int, any: Any) {
+        bottomsheetCreate = BottomsheetCreateDespesa(any as Despesa)
+        bottomsheetCreate.show(childFragmentManager,"BottomsheetCreateDespesa")
+    }
+
+    override fun showTransacao(position: Int, any: Any) {
+        bottomsheetShow = BottomsheetShowDespesa(any as Despesa)
+        bottomsheetShow.show(childFragmentManager,"BottomsheetShowDespesa")
     }
 
     override fun onItemClick(position: Int) {
 
     }
 
-    override fun onItemLongClick(position: Int) {
-        customDialog.showOptionsDialog(position)
+    override fun onItemLongClick(position: Int, transacao: Transacao ) {
+        customDialog.showOptionDialogMaterial(position, transacao as Despesa)
+    }
+
+    override fun notifyAdapter() {
+        fillAdapterDay()
     }
 }

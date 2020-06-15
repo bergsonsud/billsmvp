@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.billsmvp.R
 import com.example.billsmvp.models.Receita
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.fragment_list_despesas_row.view.*
+import kotlinx.android.synthetic.main.fragment_list_receita_row.view.*
 
 class ListReceitaAdapter(var listReceitaInterface : ListReceitaContract.View,var context : Context, var receitas : List<Receita>) : RecyclerView.Adapter<ListReceitaAdapter.ListReceitaAdapterViewHolder>(){
     override fun onCreateViewHolder(
@@ -24,23 +24,12 @@ class ListReceitaAdapter(var listReceitaInterface : ListReceitaContract.View,var
     }
 
     override fun onBindViewHolder(holder: ListReceitaAdapterViewHolder, position: Int) {
-        holder.containerView.descricao.setText(receitas[position].descricao)
-        holder.containerView.valor.setText(receitas[position].valor.toString())
-
-        holder.containerView.setOnClickListener(holder)
-        holder.containerView.setOnLongClickListener(holder)
+        holder.containerView.descricaoReceita.setText(receitas[position].descricao)
+        holder.containerView.valorReceita.setText(receitas[position].valor.toString())
     }
 
-    inner class ListReceitaAdapterViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer, View.OnClickListener, View.OnLongClickListener {
+    inner class ListReceitaAdapterViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        override fun onClick(v: View?) {
-            listReceitaInterface.onItemClick(adapterPosition)
-        }
-
-        override fun onLongClick(v: View?): Boolean {
-            listReceitaInterface.onItemLongClick(adapterPosition)
-            return true
-        }
 
  }
 }

@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.billsmvp.R
+import com.example.billsmvp.base.TransacaoInterface
 import com.example.billsmvp.models.Despesa
+import com.example.billsmvp.util.formataParaReal
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.fragment_list_despesas_row.view.*
 
-class ListDespesaAdapter(var listDespesaInterface : ListDespesaContract.View,var context: Context?, var despesas : List<Despesa>) :
+class ListDespesaAdapter(var listDespesaInterface : TransacaoInterface, var context: Context?, var despesas : List<Despesa>) :
     RecyclerView.Adapter<ListDespesaAdapter.ListDespesaViewHolder>(){
 
     override fun onCreateViewHolder(
@@ -27,22 +29,12 @@ class ListDespesaAdapter(var listDespesaInterface : ListDespesaContract.View,var
 
     override fun onBindViewHolder(holder: ListDespesaViewHolder, position: Int) {
         holder.containerView.descricao.text = despesas[position].descricao
-        holder.containerView.valor.text = despesas[position].valor.toString()
+        holder.containerView.valor.text = despesas[position].valor.formataParaReal()
 
-        holder.containerView.setOnClickListener(holder)
-        holder.containerView.setOnLongClickListener(holder)
     }
 
     inner class ListDespesaViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
-        LayoutContainer, View.OnClickListener, View.OnLongClickListener {
+        LayoutContainer {
 
-        override fun onClick(v: View?) {
-            listDespesaInterface.onItemClick(adapterPosition)
-        }
-
-        override fun onLongClick(v: View?): Boolean {
-            listDespesaInterface.onItemLongClick(adapterPosition)
-            return true
-        }
     }
 }

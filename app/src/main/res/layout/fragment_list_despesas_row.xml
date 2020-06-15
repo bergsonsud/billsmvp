@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:background="?attr/selectableItemBackground"
     android:padding="16dp"
-
-    android:orientation="vertical">
-
+    android:orientation="horizontal">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/descricao"
-        android:textSize="20sp"
-        android:text="Bergson"/>
-
-    <TextView
+        android:text="Celular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:id="@+id/valor"
-        android:textSize="12sp"
-        android:text="85 9 88998899"/>
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/colorText"
+        />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/valor"
+        android:text="R$ 200,00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/descricao"
+        android:textColor="@color/despesa"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

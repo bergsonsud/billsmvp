@@ -23,7 +23,7 @@ class AccountActivity : AppCompatActivity(), AccountActivityContract.View {
         setupSignInClient()
         logout()
         loadImage()
-        chooseFile()
+        //chooseFile()
     }
 
     fun loadImage() {
@@ -31,22 +31,11 @@ class AccountActivity : AppCompatActivity(), AccountActivityContract.View {
         val storageRef = FirebaseStorage.getInstance().reference
         val image = storageRef.child("IMG_20200106_010334.jpg")
         image.downloadUrl.addOnSuccessListener{
-            imageView.loadImage(it.toString())
+            imagemAccount.loadImage(it.toString())
         }
 
     }
 
-
-    private fun chooseFile() {
-       chooseFile.setOnClickListener {
-           val intent = Intent().apply {
-               type = "image/*"
-               action = Intent.ACTION_GET_CONTENT
-           }
-           startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
-       }
-
-    }
 
 
     override fun logout() {

@@ -10,6 +10,7 @@ import com.example.billsmvp.R
 import com.example.billsmvp.objects.ObjectFirebaseInstance
 import com.example.billsmvp.models.Despesa
 import com.example.billsmvp.models.Receita
+import com.example.billsmvp.util.formataParaReal
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -27,8 +28,8 @@ import kotlin.coroutines.CoroutineContext
 
 class MainFragment : Fragment(), CoroutineScope{
     override val coroutineContext: CoroutineContext = Dispatchers.Main
-    var totalReceitas = 0F
-    var totalDespesas = 0F
+    var totalReceitas : Float? = null
+    var totalDespesas : Float? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,9 +46,21 @@ class MainFragment : Fragment(), CoroutineScope{
                 getReceitasValue()
                 getDespesasValue()
             }
-            valor_receitas.text = totalReceitas.toString()
-            valor_despesas.text = totalDespesas.toString()
-            saldo_valor.text = (totalReceitas-totalDespesas).toString()
+
+            var total = 0F
+
+            totalDespesas?.let {
+                valor_despesas?.text = it.formataParaReal()
+                total-=it
+            }
+
+            totalReceitas?.let {
+                valor_receitas?.text = it.formataParaReal()
+                total+=it
+            }
+            total?.let {
+                saldo?.text = "Saldo "+it.formataParaReal()
+            }
             setupPie()
         }
 
@@ -81,8 +94,13 @@ class MainFragment : Fragment(), CoroutineScope{
 
     private fun getPieData(): ArrayList<PieEntry> {
         val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(totalDespesas, "Despesas"))
-        entries.add(PieEntry(totalReceitas, "Receitas"))
+        totalDespesas?.let {
+            entries.add(PieEntry(it,"Despesas"))
+        }
+
+        totalReceitas?.let {
+            entries.add(PieEntry(it,"Receitas"))
+        }
         return entries
 
     }

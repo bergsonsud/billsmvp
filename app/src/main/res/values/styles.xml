@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ThemeBillsApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Widget.Catalog.Button.OutlinedButton.Dialog" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:minWidth">@dimen/mtrl_btn_dialog_btn_min_width</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginStart">@dimen/mtrl_btn_text_btn_padding_left</item>
+        <item name="android:layout_marginLeft">@dimen/mtrl_btn_text_btn_padding_left</item>
+    </style>
+
+    <style name="Widget.Catalog.Button.Dialog" parent="Widget.MaterialComponents.Button">
+        <item name="android:minWidth">@dimen/mtrl_btn_dialog_btn_min_width</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginStart">@dimen/mtrl_btn_text_btn_padding_left</item>
+        <item name="android:layout_marginLeft">@dimen/mtrl_btn_text_btn_padding_left</item>
     </style>
 </resources>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BillsMVP</string>
+    <string name="descricao">Descrição</string>
+    <string name="valor">Valor</string>
+    <string name="data">Data</string>
+    <string name="pago">Pago</string>
+    <string name="recebido">Recebido</string>
 </resources>

@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:padding="8dp">
+    android:layout_height="600dp"
+    android:padding="24dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TextInputLayoutDescricao"
@@ -13,12 +13,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descricao">
+        android:hint="@string/descricao">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EditTextDescricaoReceita"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground"/>
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TextInputLayoutValor"
@@ -26,54 +29,100 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Valor">
+        android:hint="@string/valor"
+        android:layout_marginTop="24dp">
+
+
+        <com.wajahatkarim3.easymoneywidgets.EasyMoneyEditText
+            android:id="@+id/EditTextValorReceita"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:inputType="numberDecimal"
+            app:show_currency="true"
+            app:show_commas="true"
+            app:currency_symbol="R$"
+            android:background="@color/colorBackground"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputLayoutDataReceita"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutValor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/data"
+        android:layout_marginTop="24dp">
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/EditTextValorReceita"
+            android:id="@+id/EditTextDataReceita"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground"
+            android:focusable="false"/>
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/dialog_bt_date"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:textColor="#FF000000"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutValor"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="Data"/>
-
-    <EditText
-        android:id="@+id/EditTextDataReceita"
-        android:text="yyyy-mm-dd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutValor"
-        app:layout_constraintLeft_toRightOf="@id/dialog_bt_date"
-        android:focusable="false"/>
 
 
     <Switch
         android:id="@+id/SwitchRecebido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recebido"
-        app:layout_constraintTop_toBottomOf="@id/dialog_bt_date"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/recebido"
+        app:layout_constraintBottom_toBottomOf="@id/TextInputLayoutDataReceita"
+        app:layout_constraintLeft_toRightOf="@+id/TextInputLayoutDataReceita"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
         />
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/receitas_anexos"
+        android:text="Anexos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutDataReceita"
+        android:layout_marginTop="32dp">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnImgReceita"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        app:icon="@drawable/camera_image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/receitas_anexos" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCameraImgReceita"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/btnImgReceita"
+        app:layout_constraintBaseline_toBaselineOf="@id/btnImgReceita"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        app:icon="@drawable/camera"
+        >
+
+    </com.google.android.material.button.MaterialButton>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAddReceita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:tint="@color/white"
-        android:layout_margin="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="250dp"
         android:src="@drawable/check"
-        />
+        android:tint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
